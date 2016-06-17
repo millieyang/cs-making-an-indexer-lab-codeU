@@ -54,6 +54,12 @@ public class Index {
 	 * @param paragraphs  Collection of elements that should be indexed.
 	 */
 	public void indexPage(String url, Elements paragraphs) {
+		TermCounter counter = new TermCounter(url);
+		counter.processElements(paragraphs);
+		Set<String> keySetCounters = counter.keySet();
+		for (String currentTerm : keySetCounters) {
+			add(currentTerm, counter);
+		}
 		// make a TermCounter and count the terms in the paragraphs
         // TODO: fill this in
 		
